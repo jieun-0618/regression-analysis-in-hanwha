@@ -1,0 +1,29 @@
+install.packages('readxl')
+library(readxl)
+A <- read_excel("C:/Users/HWPS/Documents/DATA1111.xlsx", col_names = TRUE, col_types = "guess", na ="NA")
+B<-na.omit(A)
+step(lm(NG ~1, B), scope = list(lower ~ 1, upper = ~ROE+ROA+EG+DR+PE+PB+PEBI+EPS+SQG+MS+X+Y), direction = "both")
+
+result=lm(F~ROE+EG+DR+EPS,C)
+summary(result)
+
+plot(result)
+
+
+is.na(C)
+table(is.na(A))
+
+install.packages("ggplot2")
+library(ggplot2)
+
+C$F<-log(C$F)
+C$LF<-log(C$F)
+
+
+boxplot(B$SQG)
+boxplot(B$SQG)$out
+boxplot(B$SQG)$stat
+B$SQG<- ifelse(B$SQG > 51, NA, B$SQG)
+B$PB <- ifelse(B$PB <0.11 | B$PB > 4.040, NA, B$PB)
+outtemp <- boxplot(B$PB)$out
+B[B$PB %in% outtemp, ]
